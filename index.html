@@ -4,25 +4,23 @@
 <head>
     <style>
     
-    .ad-frame {
-        width: 100%;
-        height: 100%;
-        border: none;
-        pointer-events: none;
-    }
-    
-    /* Slideshow container */
-.slideshow {
-    position: relative;
-    width: 100%;
-    max-width: 400px;   /* adjust size */
-    height: 300px;      /* adjust size */
-    margin: auto;
-    overflow: hidden;
-    border-radius: 10px;
+    html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent scroll */
 }
 
-/* All slides stacked on top of each other */
+/* Fullscreen container */
+.slideshow {
+    position: fixed;
+    inset: 0; /* top:0; left:0; right:0; bottom:0 */
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* All slides stacked and covering screen */
 .slideshow .slide {
     position: absolute;
     width: 100%;
@@ -33,7 +31,7 @@
     animation: fadeAnimation 9s infinite;
 }
 
-/* Slide delays */
+/* Animation delays for each of 3 images */
 .slideshow .slide:nth-child(1) {
     animation-delay: 0s;
 }
