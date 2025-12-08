@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+    
+    html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent scroll */
+}
+
+/* Fullscreen container */
+.slideshow {
+    position: fixed;
+    inset: 0; /* top:0; left:0; right:0; bottom:0 */
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* All slides stacked and covering screen */
+.slideshow .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    opacity: 0;
+    animation: fadeAnimation 9s infinite;
+}
+
+/* Animation delays for each of 3 images */
+.slideshow .slide:nth-child(1) {
+    animation-delay: 0s;
+}
+.slideshow .slide:nth-child(2) {
+    animation-delay: 3s;
+}
+.slideshow .slide:nth-child(3) {
+    animation-delay: 6s;
+}
+
+/* Fade animation */
+@keyframes fadeAnimation {
+    0%   { opacity: 0; }
+    10%  { opacity: 1; }
+    30%  { opacity: 1; }
+    40%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+    </style>
+</head>
+
+<body>
+
+<div class="slideshow">
+    <img src="https://media.tenor.com/Z1Z-mCUxt8UAAAAM/johnny-laugh-four.gif" class="slide">
+    <img src="https://media1.tenor.com/m/76h_Bc_JXkcAAAAC/bug.gif" class="slide">
+    <img src="https://media1.tenor.com/m/3B4t-Irqq68AAAAd/s%C4%85siedzi-handshake.gif" class="slide">
+</div>
+
+</body>
+
+</html> 
+
