@@ -2,54 +2,69 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
     <style>
-    
-    html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden; /* Prevent scroll */
-}
 
-/* Fullscreen container */
-.slideshow {
-    position: fixed;
-    inset: 0; /* top:0; left:0; right:0; bottom:0 */
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: black;
+        }
 
-/* All slides stacked and covering screen */
-.slideshow .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+        .slideshow {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+        }
 
-    opacity: 0;
-    animation: fadeAnimation 9s infinite;
-}
+        .slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
 
-/* Animation delays for each of 3 images */
-.slideshow .slide:nth-child(1) {
-    animation-delay: 0s;
-}
-.slideshow .slide:nth-child(2) {
-    animation-delay: 3s;
-}
-.slideshow .slide:nth-child(3) {
-    animation-delay: 6s;
-}
+            /* start out off-screen to the right */
+            transform: translateX(100%);
+            animation: slidePush 9s infinite;
+        }
 
-/* Fade animation */
-@keyframes fadeAnimation {
-    0%   { opacity: 0; }
-    10%  { opacity: 1; }
-    30%  { opacity: 1; }
-    40%  { opacity: 0; }
-    100% { opacity: 0; }
-}
+        /* Each image gets its own offset in the animation */
+        .slide:nth-child(1) { animation-delay: 0s; }
+        .slide:nth-child(2) { animation-delay: 3s; }
+        .slide:nth-child(3) { animation-delay: 6s; }
+
+        /*
+            SLIDE / PUSH ANIMATION
+            0–10%    → image slides in from the right
+            10–40%   → image fully visible
+            40–50%   → image pushed left by next image
+            50–100%  → reset to right side (off-screen)
+        */
+        @keyframes slidePush {
+            0% {
+                transform: translateX(100%); /* start right */
+                opacity: 1;
+            }
+            10% {
+                transform: translateX(0); /* fully visible */
+            }
+            40% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(-100%); /* pushed left */
+            }
+            51% {
+                transform: translateX(100%); /* instantly reset */
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
 
     </style>
 </head>
@@ -64,5 +79,4 @@
 
 </body>
 
-</html> 
-
+</html>
